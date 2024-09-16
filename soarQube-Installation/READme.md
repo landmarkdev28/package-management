@@ -21,9 +21,13 @@
 sudo useradd sonar
 # Grand sudo access to sonar user
 sudo echo "sonar ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonar
-sudo hostname sonar
-#sudo passwd sonar
+# set hostname for the sonarqube server
+sudo hostnamectl set-hostname sonar 
 sudo su - sonar
+```
+## 1b. Assign password to sonar user
+```sh
+sudo passwd sonar
 ```
 ## 2. Enable PasswordAuthentication in the server
 ```sh
@@ -35,8 +39,7 @@ sudo service sshd restart
 ``` sh
 cd /opt
 sudo yum -y install unzip wget git
-sudo wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
-sudo yum install jdk-8u131-linux-x64.rpm -y
+sudo yum install  java-11-openjdk-devel
 ```
 ### 4. Download and extract the SonarqQube Server software.
 ```sh
